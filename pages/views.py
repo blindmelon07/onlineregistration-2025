@@ -1,38 +1,75 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 from .models import Member
-from datetime import datetime
+from django.contrib import messages
+import json
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse, HttpResponse
 
 def home(request):
-    result = None
-    not_found = False
+    return HttpResponse("Welcome to the API! 🎉 Try /api/fetch or /api/register")
+# ✅ Fetch member by ID
+# ✅ Fetch Member (GET)
+@api_view(['GET'])
+def fetch_member(request):
+    if request.method == "POST":  # Make sure POST is accepted
+        member_id = request.POST.get('id')
+        try:
+            member = Member.objects.get(id=member_id)
+            return JsonResponse({
+                "id": member.id,
+                "name": member.name,
+                "is_registered": member.is_registered
+            })
+        except Member.DoesNotExist:
+            return JsonResponse({"error": "Member not found"}, status=404)
+    else:
+        return JsonResponse({"error": "Method not allowed"}, status=405)
 
+
+# ✅ Register Member (POST)
+
+@api_view(['POST'])
+def fetch_member(request):
     if request.method == "POST":
-        # ✅ Handle Search button
-        if "fetch_btn" in request.POST:
-            client_id = request.POST.get('get_id')
-            try:
-                result = Member.objects.get(id=client_id)
-            except Member.DoesNotExist:
-                not_found = True
+        member_id = request.POST.get("id")
+        try:
+            member = Member.objects.get(id=member_id)
+            return JsonResponse({
+                "id": member.id,
+                "name": member.name,
+                "is_registered": member.is_registered,
+            })
+        except Member.DoesNotExist:
+            return JsonResponse({"error": "Member not found"})
+    else:
+        return JsonResponse({"error": "Invalid request method"})
+    
+@csrf_exempt
+def register_member(request):
+    if request.method == "POST":
+        try:
+            # Parse incoming data
+            data = json.loads(request.body)
+            member_id = data.get("id")
 
-        # ✅ Handle Register button
-        elif "register_btn" in request.POST:
-            client_id = request.POST.get('id')
+            # Try to fetch the member
+            member = Member.objects.get(id=member_id)
 
-            try:
-                member = Member.objects.get(id=client_id)
-                if not member.is_registered:
-                    member.is_registered = True
-                    member.save()
-                    messages.success(request, "You have successfully registered!")
-                    return redirect('success')
-                else:
-                    messages.warning(request, "You are already registered.")
-            except Member.DoesNotExist:
-                not_found = True
+            # Update is_registered to True
+            member.is_registered = True
+            member.save()
 
-    return render(request, 'pages/home.html', {'result': result, 'not_found': not_found})
+            return JsonResponse({
+                "message": "Member registered successfully!",
+                "id": member.id,
+                "is_registered": member.is_registered
+            })
 
-def success(request):
-    return render(request, 'pages/success.html')
+        except Member.DoesNotExist:
+            return JsonResponse({"error": "Member not found"}, status=404)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON format"}, status=400)
+
+    return JsonResponse({"error": "Invalid request method"}, status=405)

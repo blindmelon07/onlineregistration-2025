@@ -1,7 +1,10 @@
 from django.urls import path
-from . import views
+from .views import home, fetch_member, register_member
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('success/', views.success, name='success'),
+   path('', home, name='home'),  # 👈 Add this line
+   path('api/fetch/', fetch_member, name='fetch_member'),
+    path('api/register/', register_member, name="register_member"),
+    
+    
 ]

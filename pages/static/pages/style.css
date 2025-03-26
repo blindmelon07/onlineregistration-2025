@@ -1,0 +1,182 @@
+body {
+    background-image: url("https://i.imgur.com/MqvEYe3.png");
+    padding-top: 5rem !important;
+    height: 100vh; /* Full viewport height */
+    background-position: bottom; 
+    background-repeat: no-repeat; 
+    background-size: 40%; 
+}
+
+h3 {
+    font-weight: 500;
+    font-size: 13px;
+    padding-bottom: 10px;
+}
+
+.elcomlogo {
+    height: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ins {
+    font-size: 15px;
+    color: #5a7fa8;
+    text-align: center;
+    padding-top: 20px;
+}
+
+
+
+.row {
+    justify-content: center;
+}
+.register-left {
+    text-align: center;
+    padding: 30px;
+    color: white;
+}
+
+.register-left p {
+    padding: 20px 20px 0;
+}
+
+
+
+.register-left img {
+    width: 300px;
+    margin-top: 60px;
+    margin-bottom: 18px;
+    animation: mover 1s infinite alternate;
+}
+
+@keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+      
+    }
+}
+
+
+.logincontainer {
+    height: 600px;
+    width: 600px;
+    border: none;
+    color: #043e81;
+    padding: 30px 50px 30px 50px;
+    border-radius: 20px;
+    justify-content: center;
+    justify-items: center;
+    font-family: Inter;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: center;
+    
+}
+
+.register-right-one {
+    border: none;
+    background: #f8f8f8;
+    height: 650px;
+    width: 600px;
+    padding: 40px;
+    font-family: Inter;
+    font-weight: 400;
+    color: #043e81;
+    border-radius: 20px;
+ 
+}
+
+.welcome{
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    color: #ffffff;
+    text-align: center;
+    padding: 0px 0px 30px;
+    font-weight: 400;
+}
+
+
+.register-right h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: 10px;
+    color: rgb(12, 31, 141);
+}
+.register-right-one h3 {
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+    color: grey;
+}
+
+
+.register-form {
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    padding: 50px;
+    font-family: 'Inter', sans-serif;
+}
+
+.botton {
+    border-radius: 80px;
+    border: none;
+    font-weight: 400;
+    background: rgb(17, 107, 241);
+    width: 180px;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    font-family: Inter;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.botton2 {
+    border-radius: 80px;
+    border: none;
+    font-weight: 400;
+    background: #116bf1;
+    width: 180px;
+    color: #ffffff;
+    padding: 10px;
+    font-family: Inter;
+    font-size: 15px;
+    margin-top: 1rem;
+}
+
+.botton3 {
+    border-radius: 80px;
+    border: none;
+    font-weight: 400;
+    background: rgb(17, 107, 241);
+    width: 180px;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    font-family: Inter;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.botton3:hover {
+    background-color: #5a7fa8;
+    color: #ffffff;
+}
+
+
+.full-input {
+    display: inline-block;
+    padding: 3px;
+    border: 2px solid rgb(8, 45, 124);
+  }
+ .tab { text-indent:40px }
+
